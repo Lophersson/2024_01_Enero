@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: black;
+      color: antiquewhite;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+
+    h1 {
+      font-size: 120px;
+      font-weight: bold;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      font-weight: bold;
+      font-style: italic;
+      margin-top: 36px;
+      margin-bottom: 12px;
+      color: rgb(217, 255, 0);
+    }
+
+    #carrusel {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    #carrusel .contenedor {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .anterior,
+    .siguiente {
+      cursor: pointer;
+      width: auto;
+      height: 50px;
+      padding: 16px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+      background-color: rgba(0, 0, 0, 0.5);
+      
+    }
+
+    .siguiente {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+    .anterior:hover,
+    .siguiente:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .contenedor {
+      display: block;
+      margin-top: 2px;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .centrado {
+    width: 80%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-top: 6px;
+      margin-bottom: 12px;
+    }
+
+    .imagen {
+      width: 600px;
+      height: 337px;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>Carrusel de imágenes</h1>
+
+  <div id="carrusel">
+    <button class="anterior" onclick="cambiarFoto(-1)" aria-label="Foto anterior">&#10094;</button>
+    <div class="contenedor">
+      <img class="imagen" src="imagen1.png" alt="Imagen 1">
+      <img class="imagen" src="imagen2.png" alt="Imagen 2">
+      <img class="imagen" src="imagen3.png" alt="Imagen 3">
+    </div>
+    <button class="siguiente" onclick="cambiarFoto(1)" aria-label="Siguiente foto">&#10095;</button>
+  </div>
+
+  <script>
+    let posicionActual = 1;
+
+    function cambiarFoto(n) {
+      mostrarFoto(posicionActual += n);
+    }
+
+    function mostrarFoto(n) {
+      let i;
+      const fotos = document.querySelector("#carrusel .contenedor").getElementsByTagName("img");
+
+      if (n > fotos.length) {
+        posicionActual = 1;
+      }
+
+      if (n < 1) {
+        posicionActual = fotos.length;
+      }
+
+      for (i = 0; i < fotos.length; i++) {
+        fotos[i].style.display = "none";
+      }
+
+      fotos[posicionActual - 1].style.display = "block";
+    }
+
+    mostrarFoto(posicionActual);
+  </script>
+
+</body>
+</html>
