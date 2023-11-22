@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+<head>    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    
+    <meta name="robots" content="noindex, nofollow" />
+    
+    
+    <link rel="stylesheet" href="https://cdn.auth0.com/ulp/react-components/1.80.10/css/main.cdn.min.css" />
+    <style id="custom-styles-container">
+      
+        
+
+body {
+  background: #239989;
+  font-family: ulp-font, -apple-system, BlinkMacSystemFont, Roboto, Helvetica, sans-serif;
+}
+
+.c986028ea {
+  background: #7daa33;
+}
+
+.c310aca4c.c4eefdcf7 {
+  background: #2eb6a4;
+}
+
+.c310aca4c.cd9bbffa3 {
+  background: #951599;
+}
+
+.cb9b99b8c {
+  background-color: #5f5f5f;
+  font-family: 'Segoe UI'; /* Cambia la fuente */
+  font-size: 16px; /* Cambia el tamaño de la fuente */
+  color: #eeeeee;
+  width: 320px; /* Cambiar el ancho */
+  height: 50px; /* Cambiar la altura */
+  padding: 1px 1px;
+  border: none;
+  /*cursor: pointer;*/
+  cursor: default;
+  transition: all 0.0s; /* Agregar transición para suavizar la animación */
+}
+
+.cb9b99b8c:hover {
+  background-color: #77e9a2;
+  font-family: 'Segoe UI'; /* Cambia la fuente */
+  font-size: 16px; /* Cambia el tamaño de la fuente */
+  color: #156d03;
+  width: 320px; /* Cambiar el ancho */
+  height: 50px; /* Cambiar la altura */
+
+  /* width: 100%; */ /* Cambiar el ancho al 110% del tamaño original */
+  /* height: 100%; */ /* Cambiar la altura al 110% del tamaño original */
+
+  padding: 1px 1px;
+  border: none;
+}
+
+.cb9b99b8c a,
+.cb9b99b8c a:visited {
+  color: #ab41e9;
+}
+
+.c9d14100a {
+  background-color: #22184d;
+}
+
+.c08af0fd9 {
+  background-color: #2e144d;
+}
+
+/* @supports (mask-image: url('/static/img/branding-generic/copy-icon.svg')) {
+  @supports not (-ms-ime-align: auto) {
+    .c012a15bb.c81b45c4a::before {
+      background-color: #f00df0;
+    }
+  }
+} */
+
+.input.c0a50186c {
+  border-color: #D00E17;
+}
+
+.error-cloud {
+  background-color: #D00E17;
+}
+
+.error-fatal {
+  background-color: #D00E17;
+}
+
+.error-local {
+  background-color: #D00E17;
+}
+
+#alert-trigger {
+  background-color: #D00E17;
+}
+      
+</style>
+<style>
+/* By default, hide features for javascript-disabled browsing */
+/* We use !important to override any css with higher specificity */
+/* It is also overriden by the styles in <noscript> in the header file */
+.no-js {
+clip: rect(0 0 0 0);
+clip-path: inset(50%);
+height: 1px;
+overflow: hidden;
+position: absolute;
+white-space: nowrap;
+width: 1px;
+}
+
+</style>
+
+<noscript>
+<style>
+/* We use !important to override the default for js enabled */
+/* If the display should be other than block, it should be defined specifically here */
+.js-required { display: none !important; }
+.no-js {
+clip: auto;
+clip-path: none;
+height: auto;
+overflow: auto;
+position: static;
+white-space: normal;
+width: var(--prompt-width);
+}
+
+</style>
+</noscript>
+    
+<style>
+    @font-face {
+    font-family: "ColfaxAI";
+    src: url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff2) format("woff2"),
+    url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff) format("woff");
+    font-weight: normal;
+    font-style: normal;
+    }
+
+    @font-face {
+    font-family: "ColfaxAI";
+    src: url(https://cdn.openai.com/API/fonts/ColfaxAIRegularItalic.woff2) format("woff2"),
+    url(https://cdn.openai.com/API/fonts/ColfaxAIRegularItalic.woff) format("woff");
+    font-weight: normal;
+    font-style: italic;
+    }
+
+    @font-face {
+    font-family: "ColfaxAI";
+    src: url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff2) format("woff2"),
+    url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff) format("woff");
+    font-weight: bold;
+    font-style: normal;
+    }
+
+    @font-face {
+    font-family: "ColfaxAI";
+    src: url(https://cdn.openai.com/API/fonts/ColfaxAIBoldItalic.woff2) format("woff2"),
+    url(https://cdn.openai.com/API/fonts/ColfaxAIBoldItalic.woff) format("woff");
+    font-weight: bold;
+    font-style: italic;
+    }
+
+    :root {
+    --font-family: "ColfaxAI",-apple-system,BlinkMacSystemFont,Helvetica,sans-serif;
+    --primary-color: #10a37f;
+    --primary-color-no-override: #10a37f;
+    --action-primary-color: #10a37f;
+    --link-color: #10a37f;
+    --input-box-shadow-depth: 1px;
+    --page-background-color: #28145e;
+    }
+
+    body {
+    font-family: var(--font-family);
+    background-color: var(--page-background-color);
+    }
+
+    .oai-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100%;
+    }
+
+    .oai-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 0 0;
+    flex: 0 0 auto;
+    }
+
+    .oai-header svg {
+    width: 5px;
+    height: 5px;
+    fill: #202123;
+    }
+
+    .oai-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6e6e80;
+    padding: 40px 0 20px;
+    flex: 0 0 auto;
+    }
+
+    .oai-footer a {
+    color: var(--primary-color);
+    margin: 40px 0 20px;
+    }
+
+    ._widget-auto-layout main._widget {
+    flex: 1 0 auto;
+    min-height: 0;
+    }
+
+    main header > img:first-of-type {
+    display: none;
+    }
+
+    main > section, main > section > div:first-child {
+    box-shadow: none;
+    }
+
+    main header > h1 {
+    font-weight: bold !important;
+    font-size: 24px !important;
+    }
+
+    main a {
+    font-weight: normal !important;
+    }
+
+    .ulp-alternate-action {
+    text-align: center;
+    }
+
+    button[type="submit"] {
+    font-family: var(--font-family);
+    }
+    
+    main header > h1 {
+    margin-bottom: 0 !important;
+    }
+    
+    main header > h1 + div {
+    display: none !important;
+    }
+    
+    div:has(> form[data-provider]) {
+    display: flex;
+    flex-direction: column;
+    }
+    
+    form[data-provider="google"] {
+    order: -1;
+    }
+    
+    form[data-provider] {
+    margin-bottom: var(--spacing-1);
+    }
+    
+    .imagenPersonalizada {
+    width: 225px;
+    height: 225px;
+    }
+
+</style>
+</head>
+<body class="_widget-auto-layout">
+    <div class="oai-wrapper">
+        <header class="oai-header">
+        <!-- <svg width="100" height="100"></svg><path id="miPath" d="M10 10 L50 10 L50 50 L10 50 Z" fill="blue"/></svg>
+        <img id="miImagen" src="logo_png_225.png" alt="Descripción de la imagen"> -->
+
+        <script>
+        function modificarPath() {
+        // Obtén el elemento <path> por su ID
+        var path = document.getElementById("miPath");
+          
+        // Modifica el atributo "d" para cambiar la descripción de la ruta
+        path.setAttribute("d", "M20 20 L80 20 L80 80 L20 80 Z");
+        }
+
+        </script>
+
+    </header><main class="_widget login-id">
+    <section class="cbaa8ce67 _prompt-box-outer cb39e46d6">
+    <div class="c34d30191 c9b4323e2">   
+    
+    <div class="ccf5d5761">
+    <header class="c88747df1 c50318c61">
+        <!-- <div title="OpenAI" id="custom-prompt-logo" style="width: auto !important; height: 60px !important; position: static !important; margin: auto !important; padding: 0 !important; background-color: transparent !important; background-position: center !important; background-size: contain !important; background-repeat: no-repeat !important"></div>
+    
+        <img class="c92d82e9e c7493d19a" id="prompt-logo-center" src="https://openai.com/content/images/2019/05/openai-avatar.png" alt="OpenAI" /> -->       
+        
+        <h1 class="c5333e089 cfd8f850e">Bienvenido</h1>
+          
+        
+        <div class="cb40c3564 c965065bb">
+        <p class="c0c9dc0f8 cae929b0c">Inserta tus credenciales.</p>
+        </div>
+        </header>
+      
+        <div class="ca45cbdf8 cf97558aa">
+          
+        
+          
+            <div class="cd8a3ea52 c71e20020">
+              <div class="cdb7c9f45">
+                
+              
+                <form method="POST" class="c7492f9ae _form-login-id" data-form-primary="true">
+                <input type="hidden" name="state" value="hKFo2SBsMGVXX29ISmFhOWdDSW10VG9yeGRUTmd5b0lidERVRaFur3VuaXZlcnNhbC1sb2dpbqN0aWTZIGxaQ1NEX1NhUjZEYTM5c2NxNXVqM1EzdGJHNmVWVllEo2NpZNkgVGRKSWNiZTE2V29USHROOTVueXl3aDVFNHlPbzZJdEc" />
+                
+                  
+                
+                <div class="cd8a3ea52 c71e20020">
+                    <div class="cdb7c9f45">
+                      
+                    
+                      
+                        <div class="input-wrapper _input-wrapper">
+
+                        <div class="c012a15bb c81cd5251 text c62744713" data-action-text="" data-alternate-action-text=""><label class="c3d021390 no-js c7c1aa7b4 c5e98ca0d" for="name">Nombre</label>
+                            
+                        <input class="input cbac16428 c6c0e2d3a" inputMode="name" name="name" id="name" type="name" value="" required autoComplete="name" autoCapitalize="none" spellCheck="false" autoFocus />
+                            
+                        <div class="c3d021390 js-required c7c1aa7b4 c5e98ca0d" data-dynamic-label-for="name" aria-hidden="true">Nombre
+                        </div>
+                        </div><br>
+
+                        <div class="c012a15bb c81cd5251 text c62744713" data-action-text="" data-alternate-action-text=""><label class="c3d021390 no-js c7c1aa7b4 c5e98ca0d" for="surname">Apellidos</label>
+                            
+                        <input class="input cbac16428 c6c0e2d3a" inputMode="surname" name="surname" id="surname" type="surname" value="" required autoComplete="surname" autoCapitalize="none" spellCheck="false" autoFocus />
+                            
+                        <div class="c3d021390 js-required c7c1aa7b4 c5e98ca0d" data-dynamic-label-for="surname" aria-hidden="true">Apellidos
+                        </div>
+                        </div><br>
+
+                        <div class="c012a15bb c81cd5251 text c62744713" data-action-text="" data-alternate-action-text=""><label class="c3d021390 no-js c7c1aa7b4 c5e98ca0d" for="tel">Teléfono</label>
+                            
+                        <input class="input cbac16428 c6c0e2d3a" inputMode="tel" name="tel" id="tel" type="tel" value="" required autoComplete="tel" autoCapitalize="none" spellCheck="false" autoFocus />
+                            
+                        <div class="c3d021390 js-required c7c1aa7b4 c5e98ca0d" data-dynamic-label-for="tel" aria-hidden="true">Teléfono
+                        </div>
+                        </div><br>
+
+                        <div class="c012a15bb c81cd5251 text c62744713" data-action-text="" data-alternate-action-text=""><label class="c3d021390 no-js c7c1aa7b4 c5e98ca0d" for="date">Fecha de Nacimiento</label>
+                            
+                            <input class="input cbac16428 c6c0e2d3a" inputMode="date" name="date" placeholder="DD/MM/AAAA" id="date" type="date" value="" required autoComplete="date" autoCapitalize="none" spellCheck="false" autoFocus />
+                                
+                            <div class="c3d021390 js-required c7c1aa7b4 c5e98ca0d" data-dynamic-label-for="date" aria-hidden="true">Fecha de Nacimiento
+                            </div>
+                            </div><br>
+
+                        <div class="c012a15bb c81cd5251 text c62744713" data-action-text="" data-alternate-action-text=""><label class="c3d021390 no-js c7c1aa7b4 c5e98ca0d" for="email">Dirección de tu email</label>
+                        
+                        <input class="input cbac16428 c6c0e2d3a" inputMode="email" name="email" id="email" type="email" value="" required autoComplete="email" autoCapitalize="none" spellCheck="false" autoFocus />
+                        
+                        <div class="c3d021390 js-required c7c1aa7b4 c5e98ca0d" data-dynamic-label-for="email" aria-hidden="true">Dirección de tu email
+                        </div>
+                        </div><br>
+                        
+                          
+                    </div>
+                      
+                    
+                      
+                    
+                      
+                    </div>
+                </div>
+                
+                  
+                
+                <input class="hide" type="password" autoComplete="off" tabindex="-1" aria-hidden="true" />
+            
+                <input type="hidden" id="js-available" name="js-available" value="false" />
+            
+                <input type="hidden" id="webauthn-available" name="webauthn-available" value="false" />
+            
+                <input type="hidden" id="is-brave" name="is-brave" value="false" />
+            
+                <input type="hidden" id="webauthn-platform-available" name="webauthn-platform-available" value="false" />
+            
+                <div class="c9dbc1afe">
+                    
+                    <!-- <button type="submit" name="action" value="default" class="c06cf674c cb9b99b8c cb5c9dac5 ca945c18c _button-login-id" data-action-button-primary="true">Continua</button> -->
+                    
+                    <button type="submit" name="action" value="default" class="cb9b99b8c _button-login-id" data-action-button-primary="true">Continua</button>
+
+                </div>
+                </form>
+            </div>
+            </div>
+          
+        
+          
+            <div class="ulp-alternate-action  _alternate-action __s16nu9">
+            <!-- <p class="c0c9dc0f8 cae929b0c c60c1e476">¿Te olvidaste de tu contraseña?
+            <a class="ce1fb0844 c7dd22f49" href="/u/signup/identifier?state=hKFo2SBsMGVXX29ISmFhOWdDSW10VG9yeGRUTmd5b0lidERVRaFur3VuaXZlcnNhbC1sb2dpbqN0aWTZIGxaQ1NEX1NhUjZEYTM5c2NxNXVqM1EzdGJHNmVWVllEo2NpZNkgVGRKSWNiZTE2V29USHROOTVueXl3aDVFNHlPbzZJdEc" aria-label="">Inscríbete aquí</a>
+            </p> -->
+            </div>
+          
+        
+          
+        <!-- <div class="ca46ebd29 ca7f7d527">
+        <span>Entra con:</span>
+        </div>  
+        <div class="c53e89cfc c5e48afa2">
+            
+        <form method="post" data-provider="windowslive" class="cb32a2bc2 cd3f203de cabd4e4cf" data-form-secondary="true">
+        <input type="hidden" name="state" value="hKFo2SBsMGVXX29ISmFhOWdDSW10VG9yeGRUTmd5b0lidERVRaFur3VuaXZlcnNhbC1sb2dpbqN0aWTZIGxaQ1NEX1NhUjZEYTM5c2NxNXVqM1EzdGJHNmVWVllEo2NpZNkgVGRKSWNiZTE2V29USHROOTVueXl3aDVFNHlPbzZJdEc" />
+        
+        <input type="hidden" name="connection" value="windowslive" />
+        
+        <button type="submit" class="c121116ed c1a6c5293 c794dd049" data-provider="windowslive" data-action-button-secondary="true">
+            
+        <span class="cca3b05d6 ca1d48649" data-provider="windowslive"></span>
+            
+            
+        <span class="c091f0c25">Continua con Microsoft Account</span>
+        </button>
+        </form>
+        
+        <form method="post" data-provider="google" class="cb32a2bc2 cd3f203de cae69d795" data-form-secondary="true">
+        <input type="hidden" name="state" value="hKFo2SBsMGVXX29ISmFhOWdDSW10VG9yeGRUTmd5b0lidERVRaFur3VuaXZlcnNhbC1sb2dpbqN0aWTZIGxaQ1NEX1NhUjZEYTM5c2NxNXVqM1EzdGJHNmVWVllEo2NpZNkgVGRKSWNiZTE2V29USHROOTVueXl3aDVFNHlPbzZJdEc" />
+    
+        <input type="hidden" name="connection" value="google-oauth2" />
+    
+        <button type="submit" class="c121116ed c1a6c5293 c07d38bb1" data-provider="google" data-action-button-secondary="true">
+                
+        <span class="cca3b05d6 ca1d48649" data-provider="google"></span>
+                
+                
+        <span class="c091f0c25">Continua con Google</span>
+        </button>
+        </form>
+              
+        <form method="post" data-provider="apple" class="cb32a2bc2 cd3f203de c222e898b" data-form-secondary="true">
+        <input type="hidden" name="state" value="hKFo2SBsMGVXX29ISmFhOWdDSW10VG9yeGRUTmd5b0lidERVRaFur3VuaXZlcnNhbC1sb2dpbqN0aWTZIGxaQ1NEX1NhUjZEYTM5c2NxNXVqM1EzdGJHNmVWVllEo2NpZNkgVGRKSWNiZTE2V29USHROOTVueXl3aDVFNHlPbzZJdEc" />
+                
+        <input type="hidden" name="connection" value="apple" />
+                
+        <button type="submit" class="c121116ed c1a6c5293 c771f4f0e" data-provider="apple" data-action-button-secondary="true">
+                    
+        <span class="cca3b05d6 ca1d48649" data-provider="apple"></span>
+                    
+        <span class="c091f0c25">Continua con Apple</span>
+        </button>
+        </form>
+              
+        </div>
+          
+        </div> -->
+
+        </div>
+    </div>
+  
+    
+</section>
+</main>
+<script id="client-scripts" type="text/javascript">
+!function(){var e,t,w,A,E,C,S,n,a=((e={}).exports=function(n,r){var a={};function c(e,t){if(e.classList)return e.classList.add(t);var n=e.className.split(" ");-1===n.indexOf(t)&&(n.push(t),e.className=n.join(" "))}function i(e,t,n,a){return e.addEventListener(t,n,a)}function o(e){return"string"==typeof e}function s(e,t){if(e.classList)return e.classList.remove(t);var n=e.className.split(" "),a=n.indexOf(t);-1!==a&&(n.splice(a,1),e.className=n.join(" "))}function u(e,t){return e.getAttribute(t)}function l(e,t,n){return e.setAttribute(t,n)}var e=["text","number"],t="select,textarea,"+e.map(function(e){return'input[type="'+e+'"]'}).join(",");return{addClass:c,toggleClass:function(e,t,n){if(!0===n||!1===n)return a=e,r=t,!0!==n?s(a,r):c(a,r);var a,r;if(e.classList)return e.classList.toggle(t);var i=e.className.split(" "),o=i.indexOf(t);-1!==o?i.splice(o,1):i.push(t),e.className=i.join(" ")},hasClass:function(e,t){return e.classList?e.classList.contains(t):-1!==e.className.split(" ").indexOf(t)},addClickListener:function(e,t){return i(e,"click",t)},addEventListener:i,getAttribute:u,getElementById:function(e){return r.getElementById(e)},getParent:function(e){return e.parentNode},isString:o,loadScript:function(e,t){var n=r.createElement("script");for(var a in t)a.startsWith("data-")?n.dataset[a.replace("data-","")]=t[a]:n[a]=t[a];n.src=e,r.body.appendChild(n)},removeScript:function(e){r.querySelectorAll('script[src="'+e+'"]').forEach(function(e){e.remove()})},poll:function(e){var i=e.interval||2e3,t=e.url||n.location.href,o=e.condition||function(){return!0},c=e.onSuccess||function(){},s=e.onError||function(){};return setTimeout(function a(){var r=new XMLHttpRequest;return r.open("GET",t),r.setRequestHeader("Accept","application/json"),r.onload=function(){if(200===r.status){var e="application/json"===r.getResponseHeader("Content-Type").split(";")[0]?JSON.parse(r.responseText):r.responseText;return o(e)?c():setTimeout(a,i)}if(429!==r.status)return s({status:r.status,responseText:r.responseText});var t=1e3*Number.parseInt(r.getResponseHeader("X-RateLimit-Reset")),n=t-(new Date).getTime();return setTimeout(a,i<n?n:i)},r.send()},i)},querySelector:function(e,t){return o(e)?r.querySelector(e):e.querySelector(t)},querySelectorAll:function(e,t){var n=o(e)?r.querySelectorAll(e):e.querySelectorAll(t);return Array.prototype.slice.call(n)},removeClass:s,removeElement:function(e){return e.remove()},setAttribute:l,removeAttribute:function(e,t){return e.removeAttribute(t)},swapAttributes:function(e,t,n){var a=u(e,t),r=u(e,n);l(e,n,a),l(e,t,r)},setGlobalFlag:function(e,t){a[e]=!!t},getGlobalFlag:function(e){return!!a[e]},preventFormSubmit:function(e){e.stopPropagation(),e.preventDefault()},matchMedia:function(e){return"function"!=typeof n.matchMedia&&n.matchMedia(e).matches},dispatchEvent:function(e,t,n){var a;"function"!=typeof Event?(a=r.createEvent("Event")).initCustomEvent(t,n,!1):a=new Event(t,{bubbles:n}),e.dispatchEvent(a)},timeoutPromise:function(e,r){return new Promise(function(t,n){var a=setTimeout(function(){n(new Error("timeoutPromise: promise timed out"))},e);r.then(function(e){clearTimeout(a),t(e)},function(e){clearTimeout(a),n(e)})})},createMutationObserver:function(e){return"undefined"==typeof MutationObserver?null:new MutationObserver(e)},consoleWarn:function(){(console.warn||console.log).apply(console,arguments)},setTimeout:setTimeout,globalWindow:n,SUPPORTED_INPUT_TYPES:e,ELEMENT_TYPE_SELECTOR:t}},e.exports)(window,document),r={exports:function(e,t){for(var i="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_",l=new Uint8Array(256),o=0;o<i.length;o++)l[i.charCodeAt(o)]=o;function c(e){var t,n=new Uint8Array(e),a=n.length,r="";for(t=0;t<a;t+=3)r+=i[n[t]>>2],r+=i[(3&n[t])<<4|n[t+1]>>4],r+=i[(15&n[t+1])<<2|n[t+2]>>6],r+=i[63&n[t+2]];return a%3==2?r=r.substring(0,r.length-1):a%3==1&&(r=r.substring(0,r.length-2)),r}function n(){return navigator&&navigator.credentials&&"undefined"!=typeof PublicKeyCredential}return{base64URLEncode:c,base64URLDecode:function(e){var t,n,a,r,i,o=.75*e.length,c=e.length,s=0,u=new Uint8Array(o);for(t=0;t<c;t+=4)n=l[e.charCodeAt(t)],a=l[e.charCodeAt(t+1)],r=l[e.charCodeAt(t+2)],i=l[e.charCodeAt(t+3)],u[s++]=n<<2|a>>4,u[s++]=(15&a)<<4|r>>2,u[s++]=(3&r)<<6|63&i;return u.buffer},publicKeyCredentialToJSON:function e(t){if(t instanceof Array){var n=[];for(o=0;o<t.length;o+=1)n.push(e(t[o]));return n}if(t instanceof ArrayBuffer)return c(t);if(t instanceof Object){var a={};for(var r in t)a[r]=e(t[r]);return a}return t},str2ab:function(e){for(var t=new ArrayBuffer(e.length),n=new Uint8Array(t),a=0,r=e.length;a<r;a++)n[a]=e.charCodeAt(a);return t},isWebAuthnAvailable:n,isWebauthnPlatformAuthenticatorAvailableAsync:function(e){return n()?e(1e3,PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()):Promise.resolve(!1)}}}}.exports(window,document);({exports:function(e,a,r,t){var n=e(".cae24abf6"),i=e("#alert-trigger"),o=e(".c5be0b35a"),c=e(".c5f5af2b7"),s=!1;i&&c&&n&&t(n,function(e){var t=e.target===i,n=c.contains(e.target);return t&&!s?(a(o,"show"),void(s=!0)):t&&s||s&&!n?(r(o,"show"),void(s=!1)):void 0})}}).exports(a.querySelector,a.addClass,a.removeClass,a.addClickListener),(w="recaptcha_v2",A="recaptcha_enterprise",E="hcaptcha",C="friendly_captcha",S="arkose",(t={}).exports=function(e,t,n,a,r){var i,o,c,s,u=500,l=3,f=0,d=n("div[data-captcha-sitekey]"),p=n("div[data-captcha-sitekey] input");function h(){return n(function(){switch(m()){case w:case A:return"#ulp-recaptcha";case E:return"#ulp-hcaptcha";case C:return"#ulp-friendly-captcha";case S:return"#ulp-arkose"}}())}function v(){return d.getAttribute("data-captcha-lang")}function m(){return d.getAttribute("data-captcha-provider")}function b(){return d.getAttribute("data-captcha-sitekey")}function g(){return n('form[data-form-primary="true"]')}function y(e){return p.value=e}d&&(i="captchaCallback_"+Math.floor(1000001*Math.random()),o=m(),c={async:!0,defer:!0},s=function(e,t,n,a){switch(m()){case w:return"https://www.recaptcha.net/recaptcha/api.js?render=explicit&hl="+e+"&onload="+t;case A:return"https://www.recaptcha.net/recaptcha/enterprise.js?render=explicit&hl="+e+"&onload="+t;case E:return"https://js.hcaptcha.com/1/api.js?render=explicit&hl="+e+"&onload="+t;case C:return"https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.12/widget.min.js";case S:return"https://"+n+".arkoselabs.com/v2/"+a+"/api.js"}}(v(),i,d.getAttribute("data-captcha-client-subdomain"),b()),o===S?(c["data-callback"]=i,c.onerror=function(){if(f<l)return t(s),e(s,c),void f++;t(s),y("BYPASS_CAPTCHA")},window[i]=function(e){var t,n;t=e,n=function(e){setTimeout(function(){t.run()},u),e.preventDefault()},g().addEventListener("submit",n),t.setConfig({onCompleted:function(e){y(e.token),g().submit()},onError:function(e){return fetch("https://status.arkoselabs.com/api/v2/status.json").then(function(e){return e.json()}).then(function(e){var t=e.status.indicator;return"none"===t}).catch(function(e){return!1}).then(function(e){if(e&&f<l)return t.reset(),new Promise(function(e){setTimeout(function(){e(t.run())},u),f++});y("BYPASS_CAPTCHA"),g().removeEventListener("submit",n)})}})}):(window[i]=function(){delete window[i],function(){var e=function(){switch(m()){case w:return window.grecaptcha;case A:return window.grecaptcha.enterprise;case E:return window.hcaptcha;case C:return window.friendlyChallenge;case S:return window.arkose}}();if(m()===C)var t=new e.WidgetInstance(h(),{sitekey:b(),language:v(),doneCallback:function(e){y(e)}});else var t=e.render(h(),{sitekey:b(),"expired-callback":function(){y(""),a(d,"c81b45c4a"),e.reset(t)},callback:function(e){y(e),r(d,"c81b45c4a")}})}()},o===C&&(c.onload=window[i])),e(s,c))},t.exports)(a.loadScript,a.removeScript,a.querySelector,a.addClass,a.removeClass),((n={}).exports=function(a,e,r,i,o,c,s,u,n,l){function f(e){var t=e.target,n=c(t);t.value||l(t,"data-autofilled")?i(n,"c9d369630"):o(n,"c9d369630")}function d(e){var t=e.target;"onAutoFillStart"===e.animationName&&(n(t,"data-autofilled",!0),u(e.target,"change",!0),r(t,"keyup",p,{once:!0}))}function p(e){var t=e.target;n(t,"data-autofilled","")}if(a("body._simple-labels"))return e(".c3d021390.no-js").forEach(function(e){o(e,"no-js")}),void e(".c3d021390.js-required").forEach(function(e){i(e,"hide")});e(".c012a15bb:not(.cd3ad92a4):not(disabled)").forEach(function(e){i(e,"cd4995f53");var t,n=a(e,".input");n.value&&i(e,"c9d369630"),r(e,"change",f),r(n,"blur",f),r(n,"animationstart",d),t=n,s(function(){t.value&&u(t,"change",!0)},100)})},n.exports)(a.querySelector,a.querySelectorAll,a.addEventListener,a.addClass,a.removeClass,a.getParent,a.setTimeout,a.dispatchEvent,a.setAttribute,a.getAttribute),{exports:function(e,t,n,a,r,i){function o(e){var t=n("submitted");a("submitted",!0),t?r(e):"apple"===i(e.target,"data-provider")&&setTimeout(function(){a("submitted",!1)},2e3)}var c=e("form");c&&c.forEach(function(e){t(e,"submit",o)})}}.exports(a.querySelectorAll,a.addEventListener,a.getGlobalFlag,a.setGlobalFlag,a.preventFormSubmit,a.getAttribute),{exports:function(t,e,n){var a=t("form._form-detect-browser-capabilities"),r=t("main.login-id"),i=t("main.signup-with-passkeys"),o=t("div#passkey-detect-browser-capabilities");if(a||r||i||o){var c=e.isWebAuthnAvailable();t("#webauthn-available").value=c?"true":"false",t("#js-available").value="true",navigator.brave?navigator.brave.isBrave().then(function(e){t("#is-brave").value=e,s()}):s()}function s(){c?e.isWebauthnPlatformAuthenticatorAvailableAsync(n).then(function(e){t("#webauthn-platform-available").value=e?"true":"false",a&&a.submit()}).catch(function(e){t("#webauthn-platform-available").value="false",a&&a.submit()}):(t("#webauthn-platform-available").value="false",a&&a.submit())}}}.exports(a.querySelector,r,a.timeoutPromise),function(){var e={};function i(e,n,a,t){var r="user-initiated-passkey-challenge",i=n("#allow-passkeys");if(i&&i.value){var o=JSON.parse(n("#passkey-config-json").value),c=n(".passkey-begin-button"),s=a.isWebauthnPlatformAuthenticatorAvailableAsync(t),u=n("#username"),l=o,f=new AbortController;l.publicKey.challenge=a.base64URLDecode(l.publicKey.challenge),c&&e(c,function(e){c.disabled=!0,f.abort(r),navigator.credentials.get(l).then(function(e){var t=v(e);s.then(function(e){t.isUserVerifyingPlatformAuthenticatorAvailable=e,h(JSON.stringify(t)),d()})}).catch(function(e){p(e)})}),window.PublicKeyCredential&&window.PublicKeyCredential.isConditionalMediationAvailable&&window.PublicKeyCredential.isConditionalMediationAvailable().then(function(e){if(e){var t=Object.assign({},l,{mediation:"conditional",signal:f.signal});navigator.credentials.get(t).then(function(e){u.blur();var t=v(e);s.then(function(e){t.isUserVerifyingPlatformAuthenticatorAvailable=e,h(JSON.stringify(t)),d()})}).catch(function(e){e!==r&&"AbortError"!==e.name&&p(e)})}}).catch(function(){})}function d(){n("form._form-passkey-challenge").submit()}function p(e){var t;n("#action").value="showError::"+(t=e,JSON.stringify({name:t.name,message:t.message,stack:t.stack})),n("form._form-passkey-challenge").submit()}function h(e){n("#passkey").value=e}function v(e){var t={id:e.id,rawId:a.base64URLEncode(e.rawId),type:e.type,response:{clientDataJSON:a.base64URLEncode(e.response.clientDataJSON),authenticatorData:a.base64URLEncode(e.response.authenticatorData),signature:a.base64URLEncode(e.response.signature),userHandle:e.response.userHandle?a.base64URLEncode(e.response.userHandle):null}};return e.authenticatorAttachment&&(t.authenticatorAttachment=e.authenticatorAttachment),t}}return e.exports=function(e,t,n,a,r){return e(window,"load",function(e){i(t,n,a,r)}),{configurePasskeys:i}},e.exports}()(a.addEventListener,a.addClickListener,a.querySelector,r,a.timeoutPromise),{exports:function(t,e,n){var a=e(".passkey-hidden-ui"),r=navigator.userAgent.toLowerCase(),i=!!window.safari||r.match(/safari/)&&!r.match(/chrome/)&&!r.match(/chromium/);!a||a.length<=0||(i?a.forEach(function(e){t(e,"passkey-hidden-ui")}):window.PublicKeyCredential&&window.PublicKeyCredential.isConditionalMediationAvailable&&window.PublicKeyCredential.isConditionalMediationAvailable().then(function(e){e?a.forEach(function(e){n(e)}):a.forEach(function(e){t(e,"passkey-hidden-ui")})}).catch(function(e){a.forEach(function(e){t(e,"passkey-hidden-ui")})}))}}.exports(a.removeClass,a.querySelectorAll,a.removeElement)}();
+</script>
+<footer class="oai-footer">
+        <a href="https://www.academiapostal.es/" target="_blank">Academia Postal</a> <!-- | <a href="https://www.xunta.gal/portada" target="_blank">Xunta de Galicia</a> -->
+
+        <!-- <a href="https://openai.com/policies/terms-of-use" target="_blank">Términos de uso</a> | <a href="https://openai.com/policies/privacy-policy" target="_blank">Políticas Privadas</a> -->
+        </footer>
+    </div>
+
+    <script type="text/javascript">
+        function updateHeader(text) {
+            const $h1 = document.querySelector('main header > h1');
+            if ($h1) {
+            $h1.innerText = text;
+            }
+        }
+        
+        updateHeader('Bienvenido a mi Formulario');
+        
+    </script>
+</body>
+</html>
