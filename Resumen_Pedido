@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELIGE TU MENU</title>
+
+    <style>
+        .container {
+            border: solid 2px black;
+            width: 500px;
+            margin: auto;
+            background-color: #ffffff;
+            margin-top: 36px;
+            margin-bottom: 20px;
+            padding-bottom: 48px;
+        }
+
+        .contenedorSelector {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+
+        .contenedorResultado {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: left;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 14pt;
+            color: #333;
+            margin-left: 36px;
+        }
+
+        header {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 28pt;
+            color: #505050;
+            text-align: center;
+            font-style: normal;
+            font-weight: bold;
+            margin-top: 60px;
+        }
+        
+        h1 {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 14pt;
+            color: #505050;
+            text-align: left;
+            font-style: italic;
+            margin-top: 1px;
+            margin-bottom: 1px;
+        }
+
+        h2 {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 14pt;
+            color: #333;
+            text-align: left;
+            font-style: italic;
+            text-decoration: underline;
+        }
+
+        p {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 14pt;
+            color: #333;
+            text-align: left;
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+
+        select {
+    padding: 10px; /* Espacio interno para el texto */
+    font-size: 16px; /* Tamaño de fuente */
+    border: 1px solid #ccc; /* Borde con color gris */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: #fff; /* Color de fondo blanco */
+    color: #333; /* Color del texto */
+    width: 300px; /* Ancho del 100% para que se ajuste al contenedor */
+    cursor: pointer; /* Cursor de selección */
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+/* Cambiar el estilo cuando el select está enfocado */
+select:focus {
+    outline: none; /* Elimina el contorno predeterminado */
+    border-color: #007bff; /* Cambia el color del borde al estar enfocado */
+    box-shadow: 0 0 5px #007bff; /* Agrega una sombra al estar enfocado */
+}
+
+/* Estilo para las opciones dentro del select */
+select option {
+    background-color: #fff; /* Color de fondo blanco */
+    color: #333; /* Color del texto */
+}
+
+/* Estilo para el borde del desplegable */
+select::-ms-expand {
+    display: none; /* Oculta el icono del desplegable en IE */
+}
+
+.center-button {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100%; /* Asegura que el div ocupe toda la altura de .container */
+    margin-top: 48px;
+}
+
+#botonEnviar {
+    background-color: #000000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 14pt;
+    font-weight: lighter;
+    border: 2px solid #000000; /* Agrega un borde al botón */
+}
+
+#botonEnviar:hover {
+    background-color: #c9ff16;
+    color: #000000;
+    transform: scale(1.2);
+    border: 2px solid #000000; /* Agrega un borde al botón */
+}
+
+#botonEnviar:active {
+    transform: scale(0.90);
+    background-color: #777777;
+}
+    </style>
+</head>
+<body>
+    <header>
+        ELIGE TU MENU
+    </header>
+
+    <div class="container">
+        <div class="contenedorSelector">
+            <h1>Primer Plato:</h1>
+            <select id="Primero">
+                <option selected disabled>Primer Plato</option>
+                <option value="Ensalada Griega">Ensalada Griega</option>
+                <option value="Sopa de Cocido">Sopa de Cocido</option>
+                <option value="Salpicón de marisco">Salpicón de marisco</option>
+                <option value="Croquetas de Jamón">Croquetas de Jamón</option>
+            </select>
+        </div>
+        <div class="contenedorSelector">
+            <h1>Segundo Plato:</h1>
+            <select id="Segundo">
+                <option selected disabled>Segundo Plato</option>
+                <option value="Lomo a la pimienta">Lomo a la pimienta</option>
+                <option value="Strogonoff">Strogonoff</option>
+                <option value="Pollo con arroz">Pollo con arroz</option>
+                <option value="Berenjena rellena de carne y verduras">Berenjena rellena de carne y verduras</option>
+            </select>
+        </div>
+        <div class="contenedorSelector">
+            <h1>Postre:</h1>
+            <select id="Postre">
+                <option selected disabled>Postre</option>
+                <option value="Tarta de Zanahoria">Tarta de Zanahoria</option>
+                <option value="Tocinillo de cielo">Tocinillo de cielo</option>
+                <option value="Crema Catalana">Crema Catalana</option>
+                <option value="Helado de Stracciatella">Helado de Stracciatella</option>
+            </select>
+        </div>
+
+        <div class="contenedorResultado">
+            <h2>RESUMEN DE TU PEDIDO:</h2>
+            <p id="valorSeleccionado1">&nbsp;</p>
+            <p id="valorSeleccionado2">&nbsp;</p>
+            <p id="valorSeleccionado3">&nbsp;</p>
+        </div>
+
+        <div class="center-button">
+            <button id="botonEnviar">Enviar</button>
+        </div>
+    </div>
+    <script>
+        const selectElement1 = document.getElementById("Primero");
+        const resultadoDiv1 = document.getElementById("valorSeleccionado1");
+
+        selectElement1.addEventListener("change", function() {
+            resultadoDiv1.textContent = selectElement1.value;
+        });
+    </script>
+
+    <script>
+        const selectElement2 = document.getElementById("Segundo");
+        const resultadoDiv2 = document.getElementById("valorSeleccionado2");
+
+        selectElement2.addEventListener("change", function() {
+            resultadoDiv2.textContent = selectElement2.value;
+        });
+    </script>
+
+    <script>
+        const selectElement3 = document.getElementById("Postre");
+        const resultadoDiv3 = document.getElementById("valorSeleccionado3");
+
+        selectElement3.addEventListener("change", function() {
+            resultadoDiv3.textContent = selectElement3.value;
+        });
+    </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="tu_script.js"></script>
+</body>
+</html>
