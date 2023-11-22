@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostrar y Ocultar Párrafo Con Botones</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 90vh;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 100px;
+            margin-right: 100px;
+            background-color: rgb(255, 255, 255);
+        }
+        
+        h1 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-style: italic;
+            font-size: 18pt;
+            font-weight:bold;
+            color: rgb(0, 0, 0);
+            margin-top: 10px;
+        }
+
+        p {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 18pt;
+            font-weight:bold;
+            text-align: justify;
+            color: #000000;
+        }
+
+        #texto {
+            visibility: hidden;
+            text-align: justify;
+            max-width: 100%;
+            color: #000000;
+        }
+
+        .botones-container {
+            display: flex;
+        }
+
+        .boton {
+            margin-top: 2px;
+            margin-left: 2px;
+            margin-right: 2px;
+            margin-bottom: 2px;
+        }
+
+        button {
+            width: 180px;
+            height: 60px;
+            background-color: #e1e1e1;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 18px;
+            font-weight: lighter;
+            color: rgb(0, 0, 0);
+            border: none;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 20px;
+            padding-right: 20px;               
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        button:hover {
+            width: 180px;
+            height: 60px;
+            background-color: #000000;
+            font-size: 18px;
+            font-weight: lighter;
+            color: rgb(255, 255, 255);
+            transform: scale(1.2);
+        }
+
+        button:active {
+            width: 180px;
+            height: 60px;
+            transform: scale(0.95);
+        }
+
+    </style>
+</head>
+<body>
+    <h1>MOSTRAR Y OCULTAR PÁRRAFO CON BOTONES</h1>
+    <div>
+        <p>
+            Sweet dreams of rhythm and dancing
+            Sweet dreams of passion through the night
+            Sweet dreams are taking me over
+            Sweet dreams of dancing through the night
+
+            I want to get into motion
+            A better devotion
+            So I can make it through the night
+            So the music is playing
+            You know what I'm saying
+            Now everything will be alright
+
+            Rhythm is a creation
+            A better sensation
+            That will lead you through the night
+            When your body is moving
+            The music is groving
+            I want to take you home tonight
+        </p>
+    </div class="botones-container">
+    <button id="mostrar" onclick="mostrarTexto()">Mostrar</button>
+    <button id="ocultar" onclick="ocultarTexto()">Ocultar</button>
+    <div>     
+        
+        <p id="texto">
+            Keep dancing hard
+            Give this groove more feeling
+            Dance trance dance
+            More Feeling
+            In out up down all around
+            On the dance for getting down
+            Take the time yes to show them who
+            Who can make your body groove
+            Totally as the party started
+            Sweet dreams keep coming harder
+        </p>
+    </div>
+    
+    <script>
+        function mostrarTexto() {
+            document.getElementById("texto").style.visibility = "visible";
+        }
+
+        function ocultarTexto() {
+            document.getElementById("texto").style.visibility = "hidden";
+        }
+    </script>
+</body>
+</html>
