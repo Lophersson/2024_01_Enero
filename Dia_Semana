@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Día_Semana</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content:baseline;
+      height: 100vh;
+      background-color: #333;
+      background-image: url('fondosqnoir.jpg');
+  background-repeat: repeat;
+  background-attachment: fixed;  
+  background-size: 600px;
+    }
+
+    h1, h2, h3 {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-style: italic;
+        font-size: 72px;
+  font-weight: bold;
+  color: #f8f8f8;
+  text-align: center;
+  margin-bottom: 80px;
+  margin-top: 80px;
+}
+
+    .container {
+        display: flex;
+        gap: 10px;
+      }
+
+    input {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-style: italic;
+        font-size: 48px;
+        font-weight: bold;
+        color: #5c5c5c;
+        width: 600px;
+        height: 68px;;
+        padding: 6px;
+        border: 0px solid #575757;
+        border-radius: 5px;
+        background-color: rgb(255, 255, 255);
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 5px #00aaff;
+  background-color: rgb(255, 255, 255)
+}
+
+button {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 48px;
+  font-weight: bold;
+  color: rgb(0, 70, 0);
+  width: 200px;
+  height: 80px;
+    padding: 6px 12px;
+  background-color: #66f194;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgb(135, 248, 5);
+}
+
+.dia {
+        margin-top: 40px;    
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-style: italic;
+        font-size: 72px;
+        font-weight: bold;
+        text-align: center;
+        color: #ffffff;
+        width: 600px;
+        height: 80px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        border: 0px solid #000000;
+        border-radius: 5px;
+        background-color: rgba(112, 112, 112, 0);
+}
+
+  </style>
+</head>
+<body>
+  <!--<h1>Palíndromos</h1>
+
+  <div class="container">
+    <input type="text" id="textPalabra" placeholder="Ingresa una palabra">
+  <button onclick="palindromo2()">Go!</button>
+  </div>
+
+  <h2>Números Primos</h2>
+
+  <div class="container">
+    <input type="number" id="txtNumero" placeholder="Ingresa un número">
+  <button onclick="primo()">Go!</button>
+  </div>-->
+
+    <h3>¿Qué día de la semana es?</h3>
+    <div class="container">
+    <input type="date" id="txtFecha" placeholder="Ingresa una fecha">
+    <button onclick="obtenerDiaDeLaSemana()">Go!</button>
+    </div>
+
+    <div class="container">
+    <div class="dia" id="divResultado"></div>
+    </div>
+  
+  <!--<script>
+    function palindromo2() {
+      let palabra = document.getElementById("textPalabra").value;
+      let palabraAlReves = "";
+      for (let letra of palabra) {
+        palabraAlReves = letra + palabraAlReves;
+      }
+      if (palabra == palabraAlReves) {
+        alert(`La palabra ${palabra} es un palíndromo`);
+      } else {
+        alert(`La palabra ${palabra} NO es un palíndromo`);
+      }
+    }
+  </script>
+
+<script>
+    function primo() {
+			let numero = parseInt(document.getElementById("txtNumero").value);
+			let esPrimo = true;
+            let divisor =2;
+            while (divisor <= numero/2 && esPrimo) {
+                if (numero % divisor == 0) {
+                    esPrimo = false;
+                }
+                divisor++;
+            }
+            alert (`El número ${numero} ${esPrimo ? "" : "NO "}es primo`);
+            /*if (esPrimo) {
+                alert(`El número ${numero} es primo`);
+            } else {
+                alert(`El número ${numero} NO es primo`);
+            }*/
+        }
+</script>-->
+
+<!--<script>
+    function obtenerDiaDeLaSemana() {
+        var inputFecha = document.getElementById('fecha');
+        var fecha = new Date(inputFecha.value);
+        var dias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+        var diaDeLaSemana = dias[fecha.getDay()];
+        alert('El día de la semana es: ' + diaDeLaSemana);
+    }
+</script>-->
+
+<script>
+var diasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+
+function obtenerDiaDeLaSemana(){
+	let fecha = document.getElementById("txtFecha").value;
+	let divResult = document.getElementById("divResultado");
+	//console.log(`Fecha: ${fecha}`);
+	let objetoFecha = new Date(fecha);
+    //console.log(objetoFecha);
+	let dia = objetoFecha.getDay();
+	divResult.innerHTML = `${diasSemana[dia]}`;
+}
+</script>
+
+</body>
+</html>
