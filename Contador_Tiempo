@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba de Tiempo</title>
+
+    <style>
+        body {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content:baseline;
+          height: 100vh;
+          background-color: #333;
+          background-image: url('fondosqnoir.jpg');
+      background-repeat: repeat;
+      background-attachment: fixed;  
+      background-size: 600px;
+        }
+    
+        h1, h2, h3 {
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      font-style: italic;
+            font-size: 72px;
+      font-weight: bold;
+      color: #f8f8f8;
+      text-align: center;
+      margin-bottom: 10px;
+      margin-top: 10px;
+    }
+
+    .E3008 {
+      width: 60%;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      font-style: italic;
+            font-size: 24px;
+      font-weight: bold;
+      color: #f8f8f8;
+      text-align: center;
+      margin-bottom: 10px;
+      margin-top: 10px;
+    }
+    
+        .container {
+            display: flex;
+            gap: 10px;
+          }
+    
+        input {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-style: italic;
+            font-size: 48px;
+            font-weight: bold;
+            color: #5c5c5c;
+            width: 600px;
+            height: 68px;;
+            padding: 6px;
+            border: 0px solid #575757;
+            border-radius: 5px;
+            background-color: rgb(255, 255, 255);
+    }
+    
+    input:focus {
+      outline: none;
+      box-shadow: 0 0 5px #00aaff;
+      background-color: rgb(255, 255, 255)
+    }
+    
+    button {
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      font-style: italic;
+      font-size: 48px;
+      font-weight: bold;
+      color: rgb(0, 70, 0);
+      align-items: center;
+      text-align: center;
+      width: 250px;
+      height: 80px;
+        padding: 6px 12px;
+      background-color: #66f194;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background-color: rgb(135, 248, 5);
+    }
+
+    button:disabled {
+        background-color: #5c5c5c;
+    }
+    
+    .dia {
+            margin-top: 40px;    
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-style: italic;
+            font-size: 60px;
+            font-weight: bold;
+            text-align: center;
+            color: #ffffff;
+            width: 1000px;
+            height: 80px;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            border: 0px solid #000000;
+            border-radius: 5px;
+            background-color: rgba(112, 112, 112, 0);
+    }
+    
+      </style>
+    
+</head>
+<body>
+    <h1>¿Qué tan preciso eres?</h1>
+    <div class="E3008">
+    <p>Dale al botón empezar y cuenta mentalmente los segundos que quieras, para comprobar si eres preciso dale al botón parar y comprueba si se te da bien contar el tiempo lo más aproximado a la realidad.</p>
+    </div>
+    <div class="container">
+    <button id="btnEmpezar" onclick="empezar()">Empezar</button>
+    <button id="btnParar" disabled onclick="parar()">Parar</button>
+    </div>
+    <div class="dia" id="divResultado"></div>
+
+    <script>
+        var horaInicial;
+
+        function empezar() {
+            horaInicial = new Date();
+            document.getElementById("btnParar").disabled = false;
+            document.getElementById("btnEmpezar").disabled = true;
+            let divResultado = document.getElementById("divResultado");
+            divResultado.innerHTML = "";
+        }
+
+        /*function parar() {
+            let horaFinal = new Date();
+            console.log("Hora Inicio: " + horaInicial.toLocaleTimeString() + ", hora Fin: " + horaFinal.toLocaleTimeString());
+            console.log("Milisegundos finales: " + horaFinal.getTime());
+            let tiempo = horaFinal.getTime() - horaInicial.getTime();
+            divResult = document.getElementById("divResultado");
+            divResult.innerHTML = tiempo + " milisegundos";
+        }*/
+
+        function parar() {
+            let horaFinal = new Date();
+            console.log("Hora Inicio: " + horaInicial.toLocaleTimeString() + ", hora Fin: " + horaFinal.toLocaleTimeString());
+            let tiempo = horaFinal.getTime() - horaInicial.getTime();
+            console.log("Milisegundos iniciales: " + horaInicial.getTime() + ", milisegundos finales: " + horaFinal.getTime());
+            let divResultado = document.getElementById("divResultado");
+            divResultado.innerHTML = "Han pasado " + (tiempo / 1000) + " segundos.";
+            document.getElementById("btnParar").disabled = true;
+            document.getElementById("btnEmpezar").disabled = false;
+        }
+
+</script>
+
+</body>
+</html>
