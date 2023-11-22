@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMPARAR NUMEROS</title>
+    
+    <style>
+        body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        top: auto;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        margin-left: 0px;
+        margin-right: 0px;
+        background-color: rgb(255, 255, 215);
+        background-image: url('pattern10');
+        background-repeat: repeat;
+        }
+
+        h1 {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-style: italic;
+        font-size: 32pt;
+        font-weight:bold;
+        color: rgb(0, 0, 0);
+        margin-top: 32px;
+        margin-bottom: 16px;
+        }
+
+        input {
+        width: 300px;
+        height: 60px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-style: italic;
+        font-size: 20pt;
+        font-weight:bold;
+        color: rgb(0, 0, 0);
+        margin-top: 2px;
+        margin-bottom: 2px;
+        align-items: center;
+        }
+
+        p {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-style: italic;
+        font-size: 16pt;
+        font-weight:bold;
+        color: rgb(0, 0, 0);
+        text-align: justify;
+        color: #000000;
+        }
+
+        button {
+        width: 308px;
+        height: 60px;
+        background-color: #ffffff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-style: italic;
+        font-size: 20pt;
+        font-weight:bold;
+        color: rgb(0, 0, 0);
+        padding: 3px;
+        margin-top: 16px;
+        margin-bottom: 6px;
+        cursor: pointer;
+        }
+
+        button:hover {
+        transform: scale(1.1);
+        background-color: rgb(0, 0, 0);
+        color: rgb(255, 255, 255);
+        }
+
+        button:active {
+            transform: scale(0.90);
+        }
+
+    </style>
+
+    </head>
+
+    <body>
+            
+        <header>
+        <h1>COMPARAR NUMEROS</h1>
+        </header>
+
+        <input type="number" id="numero1" placeholder="Número 1">
+        <input type="number" id="numero2" placeholder="Número 2">
+
+        <button onclick="compararNumeros()">COMPARAR</button>
+
+        <p id="resultado"></p>
+
+        <script>
+        function compararNumeros() {
+        var numero1 = parseFloat(document.getElementById("numero1").value);
+        var numero2 = parseFloat(document.getElementById("numero2").value);
+
+        if (isNaN(numero1) || isNaN(numero2)) {
+        document.getElementById("resultado").innerHTML = "Por favor, ingresa números válidos.";
+        } else {
+        if (numero1 > numero2) {
+        document.getElementById("resultado").innerHTML = "El primer número es mayor que el segundo.";
+        } else if (numero1 < numero2) {
+        document.getElementById("resultado").innerHTML = "El primer número es menor que el segundo.";
+        } else {
+        document.getElementById("resultado").innerHTML = "Los dos números son iguales.";
+        }
+        }
+        }
+        </script>       
+    </body>
+</html>
