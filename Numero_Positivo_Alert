@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerta Numero Positivo</title>
+    <style>
+        body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 80vh;
+        margin-top: 30px;
+        margin-bottom: 1px;
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+
+        h1 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-style: italic;
+            font-size: 28pt;
+            font-weight:bold;
+            color: rgb(0, 0, 0);
+            margin-top: 60px;
+        }
+
+    label {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 40px;
+            font-weight: lighter;
+            margin: 5px 10px;
+        }
+
+        input {
+            width: 180px;
+            height: 60px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 40px;
+            font-weight: lighter;
+            margin: 5px 10px;
+        }
+
+        .botones-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .boton {
+            margin-top: 1px;
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-bottom: 1px;
+        }
+
+        button {
+            width: 180px;
+            height: 60px;
+            background-color: #cfcfcf;
+            color: #000000;
+            border: solid 1px;
+            border-color: black;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            padding-left: 2px;
+            padding-right: 2px;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 40px;
+            font-weight: lighter;
+            cursor: pointer;
+            margin-bottom: 100px;
+        }
+
+        button:hover {
+            width: 180px;
+            height: 60px;
+            background-color: #000000;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 40px;
+            font-weight: lighter;
+            color: rgb(255, 255, 255);
+            transform: scale(1.1);
+        }
+
+        button:active {
+            width: 180px;
+            height: 60px;
+            transform: scale(0.90);
+        }
+
+    </style>
+
+
+    <script>
+        function verificarPositivo() {
+            var numero = document.getElementById('numero').value;
+
+            if (numero > 0) {
+                alert('El número es positivo.');
+            } else if (numero < 0) {
+                alert('El número es negativo.');
+            } else {
+                alert('El número es cero (0).');
+            }
+            alert("FIN");
+        }
+    </script>
+</head>
+<body>
+    <h1>COMPRUEBA SI EL NÚMERO ES POSITIVO</h1>
+
+    <div>
+    <label for="numero">Número:</label>
+    </div>
+    <br>
+
+    <div>
+    <input type="number" id="numero" name="numero" required>
+    </div>
+    <br>
+    
+    <div>
+    <button onclick="verificarPositivo()">VERIFICA</button>
+    </div>
+    <br>
+    
+</body>
+</html>
