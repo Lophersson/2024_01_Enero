@@ -1,0 +1,24 @@
+-- CREATE DATABASE EJEMPLO;
+-- DROP DATABASE EJEMPLO;
+
+CREATE TABLE departamento (
+    idDepartamento INT AUTO_INCREMENT,
+    nombre VARCHAR(20) NOT NULL,
+    localizacion VARCHAR(40),
+    CONSTRAINT PK_DEPARTAMENTO PRIMARY KEY (idDepartamento)
+);
+
+CREATE TABLE empleado (
+    idEmpleado INT AUTO_INCREMENT,
+    nombre VARCHAR(20) NOT NULL,
+    apellidos VARCHAR(40),
+    fechaNacimiento DATE,
+    salario DECIMAL(6,2),
+    idDepartamento INT,
+    CONSTRAINT PK_EMPLEADO PRIMARY KEY (idEmpleado),
+    CONSTRAINT FK_EMPLEADO_DEPARTAMENTO
+        FOREIGN KEY (idDepartamento)
+        REFERENCES departamento(idDepartamento)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
+);
