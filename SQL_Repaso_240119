@@ -94,3 +94,12 @@ WHERE idEspecie = 2;
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 ALTER TABLE cuidador MODIFY telefono CHAR(9) NOT NULL DEFAULT '000000000';
+ALTER TABLE cuidador ADD nss CHAR(12) UNIQUE NOT NULL;
+-
+-
+-
+-
+-
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
