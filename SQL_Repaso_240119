@@ -55,6 +55,28 @@ VALUES ('bosque', 'templado', 'árboles'),
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+INSERT INTO cuidador (nombre, apellidos, direccion, telefono)
+VALUES ('Idris', 'Elba', 'Calle Berlín, 23', '981 123 456'),
+('Daniel', 'Craig', 'Calle Londres, 17', '981 456 789'),
+('Pierce', 'Brosnan', 'Calle Moscú, 67', '981 789 012');
+
+INSERT INTO cuidadorespecie (idCuidador, idEspecie)
+VALUES (1, 1),
+       (2, 2),
+       (3, 3);
+
+INSERT INTO especie (nombreCientifico, habitat, nombre)
+VALUES ('Homo sapiens', 'bosque', 'humano'),
+      ('Canis lupus', 'pradera', 'lobo'),
+      ('Gallus gallus', 'granja', 'pollo');
+
+INSERT INTO habitat (nombre, clima, vegetacion)
+VALUES ('bosque', 'templado', 'árboles'),
+      ('pradera', 'cálido', 'pastos'),
+      ('granja', 'templado', 'cultivos');
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 -- Obtener todas las especies
 SELECT *
 FROM especie;
