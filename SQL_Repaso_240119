@@ -1,0 +1,74 @@
+DROP DATABASE IF EXISTS REPASO_ZOO;
+CREATE DATABASE IF NOT EXISTS REPASO_ZOO;
+USE REPASO_ZOO;
+
+CREATE TABLE cuidador (
+  idCuidador INT NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(255) NOT NULL,
+  apellidos VARCHAR(255) NOT NULL,
+  direccion VARCHAR(255) NOT NULL,
+  telefono VARCHAR(255) NOT NULL,
+  PRIMARY KEY (idCuidador)
+);
+
+CREATE TABLE habitat (
+  idHabitat INT NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(255) NOT NULL,
+  clima VARCHAR(255) NOT NULL,
+  vegetacion VARCHAR(255) NOT NULL,
+  PRIMARY KEY (idHabitat)
+);
+
+CREATE TABLE especie (
+  idEspecie INT NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(255),
+  nombreCientifico VARCHAR(255) NOT NULL,
+  habitat VARCHAR(255) NOT NULL,  
+  PRIMARY KEY (idEspecie)
+);
+
+CREATE TABLE cuidadorespecie (
+  idCuidadorEspecie INT NOT NULL AUTO_INCREMENT,
+  idCuidador INT NOT NULL,
+  idEspecie INT NOT NULL,
+  PRIMARY KEY (idCuidadorEspecie),
+  FOREIGN KEY (idCuidador) REFERENCES cuidador (idCuidador),
+  FOREIGN KEY (idEspecie) REFERENCES especie (idEspecie)
+);
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+INSERT INTO cuidadorespecie (idCuidador, idEspecie)
+VALUES (1, 1),
+       (2, 2),
+       (3, 3);
+
+INSERT INTO especie (nombreCientifico, habitat, nombre)
+VALUES ('Homo sapiens', 'bosque', 'humano'),
+      ('Canis lupus', 'pradera', 'lobo'),
+      ('Gallus gallus', 'granja', 'pollo');
+
+INSERT INTO habitat (nombre, clima, vegetacion)
+VALUES ('bosque', 'templado', 'árboles'),
+      ('pradera', 'cálido', 'pastos'),
+      ('granja', 'templado', 'cultivos');
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+-- Obtener todas las especies
+SELECT *
+FROM especie;
+
+-- Obtener todas las especies que viven en un bosque
+SELECT *
+FROM especie
+WHERE habitat = 'bosque';
+
+-- Obtener todos los cuidadores que cuidan de un lobo
+SELECT *
+FROM cuidadorespecie
+WHERE idEspecie = 2;
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+ALTER TABLE cuidador MODIFY telefono CHAR(9) NOT NULL DEFAULT '000000000';
