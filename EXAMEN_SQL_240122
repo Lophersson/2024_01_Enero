@@ -60,4 +60,20 @@ SET Territorio =
         ELSE 'Sur'
     END;
 
+-- PREGUNTA 4, CORTADO:
+UPDATE territorios
+SET Nombre_Territorios = 'Norte'
+WHERE IDTERRITORIOS IN (SELECT id_territorio FROM empleado WHERE Nombre LIKE 'M%');
+
+UPDATE territorios
+SET Nombre_Territorios = 'Centro'
+WHERE IDTERRITORIOS IN (SELECT id_territorio FROM empleado WHERE Apellido = 'Fuller');
+
+UPDATE territorios
+SET Nombre_Territorios = 'Sur'
+WHERE Nombre_Territorios IS NULL OR IDTERRITORIOS NOT IN (
+    SELECT id_territorio FROM empleado 
+    WHERE Nombre LIKE 'M%' OR Apellido = 'Fuller'
+);
+
 -- PREGUNTA 5:
