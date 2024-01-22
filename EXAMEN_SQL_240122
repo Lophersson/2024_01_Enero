@@ -77,3 +77,25 @@ WHERE Nombre_Territorios IS NULL OR IDTERRITORIOS NOT IN (
 );
 
 -- PREGUNTA 5:
+DELETE FROM territorios
+WHERE Nombre_Territorios = 'Norte' AND Localizacion = 'Norte - Noroeste - Nordeste';
+
+INSERT INTO territorios (Nombre_Territorios, Localizacion) 
+VALUES 
+('Norte', 'Norte - Noroeste'),
+('Centro', 'Central - Suroeste - Nordeste'),
+('Sur', 'Sur - Sureste');
+
+
+DELETE FROM territorios
+WHERE Nombre_Territorios = 'Norte' AND Localizacion = 'Norte - Noroeste - Nordeste';
+
+UPDATE territorios
+SET Localizacion = 'Central - Suroeste - Nordeste'
+WHERE Nombre_Territorios = 'Centro';
+
+INSERT INTO territorios (Nombre_Territorios, Localizacion) 
+VALUES 
+('Centro', 'Central - Suroeste - Nordeste');
+
+-- PREGUNTA 6:
