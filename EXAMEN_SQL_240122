@@ -120,3 +120,50 @@ VALUES
 ('Sur', 'Sur - Sureste');
 
 -- PREGUNTA 6:
+SELECT TituloDeCortesia, Nombre, Apellido, FechaNacimiento, Extension
+FROM empleado
+WHERE Titulo = 'Sales Representative' 
+      AND YEAR(FechaNacimiento) BETWEEN 1960 AND 1969
+ORDER BY Nombre ASC;
+
+-- PREGUNTA 7
+SELECT pedidos.PedidoID, pedidos.FechaPedido, producto.NombreProducto, cliente.Ciudad AS CiudadDestinatario,
+       detallespedido.cantidad, detallesPedido.PrecioUnitario,
+       detallesPedido.cantidad * detallesPedido.PrecioUnitario AS Importe
+FROM pedidos
+JOIN detallespedido ON pedidos.PedidoID = detallespedido.PedidoID
+JOIN producto ON detallespedido.ProductoID = producto.ProductoID
+JOIN cliente ON pedidos.ClienteID = cliente.ClienteID
+WHERE clientes.Pais = 'USA'
+ORDER BY Importe DESC;
+
+-- PREGUNTA 8
+SELECT proveedor.ProveedorID, COUNT(producto.ProductoID)
+FROM proveedor
+JOIN producto ON proveedor.ProveedorID = producto.ProveedorID
+WHERE producto.UnidadesEnStock >= 3
+GROUP BY proveedor.ProveedorID
+HAVING COUNT(producto.ProductoID) >= 3 OR MIN(producto.UnidadesEnStock) >= 3;
+
+-- PREGUNTA 9
+SELECT NombreCompania, Direccion, Pais
+FROM cliente
+WHERE ClienteID NOT IN (
+    SELECT ClienteID
+    FROM pedidos
+);
+
+-- PREGUNTA 10
+CREATE VIEW ResumenProductoFA AS
+SELECT
+    producto.NombreProducto,
+    proveedor.NombreCompania,
+    proveedor.Fax
+FROM
+    producto
+JOIN
+    proveedor ON producto.ProveedorID = proveedor.ProveedorID
+WHERE
+    proveedor.Pais IN ('Germany', 'France');
+
+SELECT * FROM ResumenProductoFA;
