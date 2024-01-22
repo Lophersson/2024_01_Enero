@@ -1,4 +1,4 @@
--- PREGUNTA 1
+-- PREGUNTA 1:
 USE NORTHWIND;
 CREATE TABLE TERRITORIOS (
     IDTERRITORIOS INT AUTO_INCREMENT PRIMARY KEY,
@@ -6,7 +6,7 @@ CREATE TABLE TERRITORIOS (
     LOCALIZACION VARCHAR(50)
 );
 
--- PREGUNTA 2
+-- PREGUNTA 2:
 ALTER TABLE empleado
 ADD COLUMN id_territorio INT;
 
@@ -15,4 +15,49 @@ ADD CONSTRAINT fk_empleado_territorio
     FOREIGN KEY (id_territorio)
     REFERENCES territorios(id_territorio); 
 
---PREGUNTA 3
+-- PREGUNTA 3:
+INSERT INTO territorios (Nombre_Territorios, Localizacion) 
+VALUES 
+('Norte', 'Norte - Noroeste - Nordeste'),
+('Centro', 'Central - Suroeste'),
+('Sur', 'Sur - Sureste');
+
+-- PREGUNTA 4 PRIMERA OPCIÓN:
+UPDATE territorios
+SET Nombre_Territorios = 'Norte'
+WHERE IDTERRITORIOS IN (SELECT id_territorio FROM empleado WHERE Nombre LIKE 'M%');
+
+UPDATE territorios
+SET Nombre_Territorios = 'Centro'
+WHERE IDTERRITORIOS IN (SELECT id_territorio FROM empleado WHERE Apellido = 'Fuller');
+
+UPDATE territorios
+SET Nombre_Territorios = 'Sur'
+WHERE Nombre_Territorios IS NULL OR IDTERRITORIOS NOT IN (
+    SELECT id_territorio FROM empleado 
+    WHERE Nombre LIKE 'M%' OR Apellido = 'Fuller'
+);
+
+-- PREGUNTA 4 SEGUNDA OPCIÓN:
+UPDATE empleados
+SET Nombre_Territorios = 'Norte'
+WHERE Nombre LIKE 'M%';
+
+UPDATE empleados
+SET Nombre_Territorios = 'Centro'
+WHERE Apellido = 'Fuller';
+
+UPDATE empleados
+SET Nombre_Territorios = 'Sur'
+WHERE Nombre_Territorios IS NULL OR (Nombre NOT LIKE 'M%' AND Apellido != 'Fuller');
+
+-- PREGUNTA 4 TERCERA OPCIÓN:
+UPDATE empleados
+SET Territorio = 
+    CASE
+        WHEN Nombre LIKE 'M%' THEN 'Norte'
+        WHEN Apellido = 'Fuller' THEN 'Centro'
+        ELSE 'Sur'
+    END;
+
+-- PREGUNTA 5:
