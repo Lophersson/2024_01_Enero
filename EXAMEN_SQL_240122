@@ -98,4 +98,25 @@ INSERT INTO territorios (Nombre_Territorios, Localizacion)
 VALUES 
 ('Centro', 'Central - Suroeste - Nordeste');
 
+-- PREGUNTA 5 modificada:
+-- PREGUNTA 5
+-- Actualizar 'Norte' para incluir solo 'Norte' y 'Noroeste'
+UPDATE territorios
+SET Localizacion = 'Norte - Noroeste'
+WHERE Nombre_Territorios = 'Norte';
+
+-- Actualizar 'Centro' para incluir 'Central - Suroeste - Nordeste'
+UPDATE territorios
+SET Localizacion = 'Central - Suroeste - Nordeste'
+WHERE Nombre_Territorios = 'Centro';
+
+DELETE FROM territorios
+WHERE Nombre_Territorios = 'Norte' AND Localizacion = 'Norte - Noroeste - Nordeste';
+
+INSERT INTO territorios (Nombre_Territorios, Localizacion) 
+VALUES 
+('Norte', 'Norte - Noroeste'),
+('Centro', 'Central - Suroeste - Nordeste'),
+('Sur', 'Sur - Sureste');
+
 -- PREGUNTA 6:
