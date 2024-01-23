@@ -1,0 +1,24 @@
+package com.afd.cotizaciones.modelo.dao;
+
+import java.sql.Connection;
+
+public class DAOUtil {
+
+    public static Connection obtenerConexion() {
+        // Establece la cadena de conexión
+        String cadenaConexion = "jdbc:mysql://localhost:3306/cotizaciones";
+        String usuario = "root";
+        String clave = "";
+
+        // Crea una conexión
+        Connection conexion = null;
+        try {
+            conexion = DriverManager.getConnection(cadenaConexion, usuario, clave);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Devuelve la conexión
+        return conexion;
+    }
+}
