@@ -1,0 +1,43 @@
+public List<Cotizacion> buscarCotizacionesPorEmpresa(int idEmpresa) throws SQLException {
+    Connection conexion = null;
+    PreparedStatement sentencia = null;
+    ResultSet resultado = null;
+    List<Cotizacion> lista = new ArrayList<>();
+
+    try {
+        conexion = DAOUtil.obtenerConexion();
+        sentencia = conexion.prepareStatement("SELECT idcotizacion, valor, fecha FROM cotizacion WHERE idempresa = ?");
+        sentencia.setInt(1, idEmpresa);
+        resultado = sentencia.executeQuery();
+
+        while (resultado.next()) {
+            int idCotizacion = resultado.getInt("idcotizacion");
+            BigDecimal valor = resultado.getBigDecimal("valor");
+            java.util.Date fecha = resultado.getDate("fecha");
+
+            Cotizacion cotizacion = new Cotizacion(idCotizacion, valor, fecha);
+            lista.add(cotizacion);
+        }
+    } finally {
+        cerrarRecursos(conexion, sentencia, resultado);
+    }
+
+    return lista;
+}
+
+private void cerrarRecursos(Connection conexion, PreparedStatement sentencia, ResultSet resultado) {
+    try {
+        if (resultado != null) {
+            resultado.close();
+        }
+        if (sentencia != null) {
+            sentencia.close();
+        }
+        if (conexion != null) {
+            conexion.close();
+        }
+    } catch (SQLException e) {
+        // Manejo de excepciones, puedes imprimir el error o manejarlo de otra manera.
+        e.printStackTrace();
+    }
+}
