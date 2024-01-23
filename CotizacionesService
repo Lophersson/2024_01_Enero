@@ -1,0 +1,29 @@
+import com.afd.cotizaciones.modelo.Cotizacion;
+
+public class CotizacionesService {
+
+    public List<Cotizacion> buscarCotizacionesPorEmpresa(int idEmpresa) throws SQLException {
+
+        Connection conexion = DAOUtil.obtenerConexion();
+        PreparedStatement sentencia = conexion.prepareStatement(SELECT_COTIZACIONES_POR_EMPRESA);
+        sentencia.setInt(1, idEmpresa);
+
+        ResultSet resultados = sentencia.executeQuery();
+        List<Cotizacion> cotizaciones = new ArrayList<>();
+        while (resultados.next()) {
+            Cotizacion cotizacion = new Cotizacion();
+            cotizacion.setId(resultados.getInt("id"));
+            cotizacion.setValor(resultados.getDouble("valor"));
+            cotizacion.setFecha(resultados.getDate("fecha"));
+            cotizacion.setIdEmpresa(resultados.getInt("idEmpresa"));
+
+            cotizaciones.add(cotizacion);
+        }
+
+        sentencia.close();
+        conexion.close();
+
+        return cotizaciones;
+    }
+
+}
