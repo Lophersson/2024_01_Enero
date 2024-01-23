@@ -1,0 +1,31 @@
+public void insertarCotizacion(Cotizacion cotizacion, int idEmpresa) throws SQLException {
+
+    Connection conexion = null;
+    PreparedStatement sentencia = null;
+
+    try {
+        conexion = DAOUtil.obtenerConexion();
+
+        sentencia = conexion.prepareStatement(INSERT_COTIZACION);
+        sentencia.setDouble(1, cotizacion.getValor());
+        sentencia.setDate(2, Date.valueOf(cotizacion.getFecha()));
+        sentencia.setInt(3, idEmpresa);
+
+        int filasAfectadas = sentencia.executeUpdate();
+        if (filasAfectadas != 1) {
+            throw new SQLException("No se pudo insertar la cotización");
+        }
+
+        // Comprobación de valores válidos
+        if (cotizacion.getValor() <= 0) {
+            throw new IllegalArgumentException("El valor de la cotización debe ser un número positivo");
+        }
+    } finally {
+        if (sentencia != null) {
+            sentencia.close();
+        }
+        if (conexion != null) {
+            conexion.close();
+        }
+    }
+}
