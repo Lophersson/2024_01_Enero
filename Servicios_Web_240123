@@ -8,7 +8,7 @@ CREATE TABLE empresa(
     constraint pk_empresa primary key(idempresa)
 );
 
-CREATE TABLE cotización(
+CREATE TABLE cotizacion(
     idcotizacion int auto_increment,
     valor decimal(8,4) not null,
     fecha date,
@@ -19,3 +19,7 @@ CREATE TABLE cotización(
     on update cascade
     on delete cascade
 );
+
+INSERT INTO empresa (nombre) values ('PotoChof');
+INSERT INTO cotizacion(valor, fecha, idEmpresa)
+	values (123.45, '2024-01-23', 1);
