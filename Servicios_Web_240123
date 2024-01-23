@@ -1,0 +1,21 @@
+DROP DATABASE IF EXISTS cotizaciones;
+CREATE DATABASE IF NOT EXISTS cotizaciones;
+USE cotizaciones;
+
+CREATE TABLE empresa(
+    idEmpresa INT auto_increment,
+    nombre varchar(50) not null unique,
+    constraint pk_empresa primary key(idempresa)
+);
+
+CREATE TABLE cotización(
+    idcotizacion int auto_increment,
+    valor decimal(8,4) not null,
+    fecha date,
+    idempresa int,
+    constraint pk_cotizacion primary key(idcotizacion),
+    constraint fk_cotizacion_empresa foreign key(idempresa)
+    references empresa(idempresa)
+    on update cascade
+    on delete cascade
+);
