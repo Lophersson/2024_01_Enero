@@ -1,0 +1,15 @@
+@GET
+@Path("empresa/{id}")
+@Produces(MediaType.APPLICATION_JSON)
+public Response buscarEmpresaPorId(@PathParam("id") int idEmpresa) {
+    try {
+        Empresa empresa = this.servicio.buscarEmpresaPorId(idEmpresa);
+        if (empresa != null) {
+          return Response.ok(empresa).build();
+        } else {
+          return Response.status(400, "El id de la empresa no existe").build();
+        }
+    } catch (SQLException e) {
+      return gestionarErrores(e);
+    }
+}
