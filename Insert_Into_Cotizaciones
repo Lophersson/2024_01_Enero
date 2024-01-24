@@ -2,6 +2,23 @@
 -- Si no existe, deberías insertar 'PotoChof' en la tabla empresa primero y luego obtener el idEmpresa correspondiente
 
 -- Insertar nuevo registro para 'PotoChof' en la tabla cotizacion
+INSERT INTO cotizacion (idempresa, valor, fecha) VALUES
+  ((SELECT idEmpresa FROM empresa WHERE nombre = 'PotoChof'), 128.7500, 2024-01-22);
+
+-- Insertar otro registro para 'PotoChof' en la tabla cotizacion
+INSERT INTO cotizacion (idempresa, valor, fecha) VALUES
+  ((SELECT idEmpresa FROM empresa WHERE nombre = 'PotoChof'), 123.4500, 2024-01-23);
+  
+-- Insertar otro registro para 'PotoChof' en la tabla cotizacion
+INSERT INTO cotizacion (idempresa, valor, fecha) VALUES
+  ((SELECT idEmpresa FROM empresa WHERE nombre = 'PotoChof'), 121.1500, 2024-01-24);
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- Suponiendo que 'PotoChof' ya existe en la tabla empresa con un idEmpresa específico
+-- Si no existe, deberías insertar 'PotoChof' en la tabla empresa primero y luego obtener el idEmpresa correspondiente
+
+-- Insertar nuevo registro para 'PotoChof' en la tabla cotizacion
 INSERT INTO cotizacion (idempresa, valor) VALUES
   ((SELECT idEmpresa FROM empresa WHERE nombre = 'PotoChof'), 128.7500);
 
