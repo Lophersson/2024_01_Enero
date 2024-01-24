@@ -28,9 +28,9 @@ public class CotizacionesService {
 
 	public Empresa buscarEmpresaPorId(int idEmpresa) {		
 		EmpresaDAO dao = new EmpresaDAO();
-		Empresa empresa = daoE.buscarPorld(idEmpresa);
+		Empresa empresa = daoE.buscarPorId(idEmpresa);
 		if (empresa != null) {
-			CotizacionDAO daoC = new CotizacionDA0();
+			CotizacionDAO daoC = new CotizacionDAO();
 			List<Cotizacion> lista = daoC.buscarCotizacionesPorEmpresa(idEmpresa);
 			empresa.setCotizaciones(lista);
 		}
