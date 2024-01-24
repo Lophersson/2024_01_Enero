@@ -1,3 +1,38 @@
+-- Insertar un nuevo registro en la tabla 'empresa'
+-- INSERT INTO empresa (nombre) VALUES ('PotoChof');
+
+-- Seleccionar todos los campos de las tablas 'empresa' y 'cotizacion' mediante un JOIN
+SELECT *
+FROM empresa
+JOIN cotizacion ON empresa.idEmpresa = cotizacion.idempresa;
+
+---
+
+-- Suponiendo que 'PotoChof' ya existe en la tabla empresa con un idEmpresa específico
+-- Si no existe, deberías insertar 'PotoChof' en la tabla empresa primero y luego obtener el idEmpresa correspondiente
+
+-- Insertar nuevo registro para 'PotoChof' en la tabla cotizacion
+INSERT INTO cotizacion (idempresa, valor, fecha) VALUES
+  ((SELECT idEmpresa FROM empresa WHERE nombre = 'PotoChof'), 128.7500, 2024-01-22);
+
+-- Insertar otro registro para 'PotoChof' en la tabla cotizacion
+INSERT INTO cotizacion (idempresa, valor, fecha) VALUES
+  ((SELECT idEmpresa FROM empresa WHERE nombre = 'PotoChof'), 123.4500, 2024-01-23);
+  
+-- Insertar otro registro para 'PotoChof' en la tabla cotizacion
+INSERT INTO cotizacion (idempresa, valor, fecha) VALUES
+  ((SELECT idEmpresa FROM empresa WHERE nombre = 'PotoChof'), 121.1500, 2024-01-24);
+
+---
+
+-- Borrar filas de la tabla cotizacion para la empresa 'PotoChof'
+DELETE FROM cotizacion WHERE idempresa = (SELECT idempresa FROM empresa WHERE nombre = 'PotoChof');
+
+---
+
+
+---
+
 -- Suponiendo que 'PotoChof' ya existe en la tabla empresa con un idEmpresa específico
 -- Si no existe, deberías insertar 'PotoChof' en la tabla empresa primero y luego obtener el idEmpresa correspondiente
 
