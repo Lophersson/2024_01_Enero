@@ -1,0 +1,39 @@
+package com.afd.cotizaciones.servicio;
+
+import java.sql.SQLException;
+import java.util.List;
+import com.afd.cotizaciones.modelo.Cotizacion;
+import com.afd.cotizaciones.modelo.Empresa;
+import com.afd.cotizaciones.modelo.dao.CotizacionDAO;
+import com.afd.cotizaciones.modelo.dao.EmpresaDAO;
+
+public class CotizacionesService {
+
+	//CONTIENE LAS FUNCIONALIDADES DE MI SERVICIO
+	
+	public List<Cotizacion> buscarCotizacionesPorEmpresa(int idEmpresa) throws SQLException {
+		CotizacionDAO dao = new CotizacionDAO();
+		return dao.buscarCotizacionesPorEmpresa(idEmpresa);
+	}
+	
+	public void nuevaCotizacion(Cotizacion cotizacion, int idEmpresa) throws SQLException {
+		CotizacionDAO dao = new CotizacionDAO();
+		dao.insertarCotizacion(cotizacion, idEmpresa);
+	}
+	
+	public List<Empresa> buscarTodasEmpresas() throws SQLException {
+		EmpresaDAO dao = new EmpresaDAO();
+		return dao.buscarTodas();
+	}
+
+	public Empresa buscarEmpresaPorId(int idEmpresa) {		
+		EmpresaDAO dao = new EmpresaDAO();
+		Empresa empresa = daoE.buscarPorld(idEmpresa);
+		if (empresa != null) {
+			CotizacionDAO daoC = new CotizacionDA0();
+			List<Cotizacion> lista = daoC.buscarCotizacionesPorEmpresa(idEmpresa);
+			empresa.setCotizaciones(lista);
+		}
+		return empresa;		
+	}	
+}
