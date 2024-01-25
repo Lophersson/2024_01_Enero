@@ -1,0 +1,93 @@
+package com.afd.cotizaciones.modelo.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.afd.cotizaciones.modelo.Empresa;
+
+public class EmpresaDAO {
+
+    private final static String SELECT_ALL = "SELECT * FROM empresa";    
+    public List<Empresa> buscarTodas() throws SQLException {
+        Connection conexion = null;
+        Statement sentencia = null;
+        ResultSet resultado = null;
+        List<Empresa> lista = new ArrayList<>();
+        try {
+            conexion = DAOUtil.obtenerConexion();
+            sentencia = conexion.createStatement();
+            resultado = sentencia.executeQuery(SELECT_ALL);
+            while (resultado.next()) {
+                int idEmpresa = resultado.getInt("idEmpresa");
+                String nombre = resultado.getString("nombre");
+                Empresa empresa = new Empresa(idEmpresa, nombre);
+                lista.add(empresa);
+            }
+            return lista;
+        } finally {
+            if (resultado != null) {
+                resultado.close();
+            }
+            if (sentencia != null) {
+                sentencia.close();
+            }
+            if (conexion != null) {
+                conexion.close();
+            }
+        }
+    }
+
+    private final static String SELECT_BY_ID = "SELECT * FROM empresa WHERE idEmpresa = ?";
+    public Empresa buscarPorId(int idEmpresa) throws SQLException {
+        Connection conexion = null;
+        PreparedStatement ps = null;
+        ResultSet resultado = null;
+        Empresa empresa = null;
+
+        try {
+            conexion = DAOUtil.obtenerConexion();
+            ps = conexion.prepareStatement(SELECT_BY_ID);
+            ps.setInt(1, idEmpresa);
+
+            resultado = ps.executeQuery();
+
+            if (resultado.next()) {
+                int id = resultado.getInt("idEmpresa");
+                String nombre = resultado.getString("nombre");
+                empresa = new Empresa(id, nombre);
+            }
+        } finally {
+            if (resultado != null) {
+                resultado.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (conexion != null) {
+                conexion.close();
+            }
+        }
+
+        return empresa;
+    }
+ 
+    public boolean borrarEmpresa(int idEmpresa) {
+        if (empresas.containsKey(idEmpresa)) {
+            empresas.remove(idEmpresa);
+            System.out.println("Empresa con ID " + idEmpresa + " eliminada correctamente.");
+            return true;  
+        } else {
+            System.out.println("No se encontró ninguna empresa con el ID " + idEmpresa);
+            return false;
+        }
+        }
+    }
+    
+}
