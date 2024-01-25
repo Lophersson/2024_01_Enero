@@ -1,0 +1,17 @@
+ private final static String DELETE_EMPRESA = "DELETE FROM empresa WHERE idEmpresa = ?";
+
+    public boolean borrarEmpresa(int idEmpresa) throws SQLException {
+        Connection conexion = null;
+        PreparedStatement ps = null;
+
+        try {
+            conexion = DAOUtil.obtenerConexion();
+            ps = conexion.prepareStatement(DELETE_EMPRESA);
+            ps.setInt(1, idEmpresa);
+
+            int numFilas = ps.executeUpdate();
+            return numFilas == 1;
+        } finally {
+            DAOUtil.cerrarRecursos(conexion, ps);
+        }
+    }
