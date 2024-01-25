@@ -1,0 +1,106 @@
+package com.afd.cotizaciones.modelo.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.afd.cotizaciones.modelo.Empresa;
+
+public class EmpresaDAO {
+
+    private final static String SELECT_ALL = "SELECT * FROM empresa";
+
+    public List<Empresa> buscarTodas() throws SQLException {
+        Connection conexion = null;
+        Statement sentencia = null;
+        ResultSet resultado = null;
+        List<Empresa> lista = new ArrayList<>();
+
+        try {
+            conexion = DAOUtil.obtenerConexion();
+            sentencia = conexion.createStatement();
+            resultado = sentencia.executeQuery(SELECT_ALL);
+
+            while (resultado.next()) {
+                int idEmpresa = resultado.getInt("idEmpresa");
+                String nombre = resultado.getString("nombre");
+                Empresa empresa = new Empresa(idEmpresa, nombre);
+                lista.add(empresa);
+            }
+            return lista;
+        } finally {
+            DAOUtil.cerrarRecursos(conexion, sentencia, resultado);
+        }
+    }
+
+    private final static String SELECT_BY_ID = "SELECT * FROM empresa WHERE idEmpresa = ?";
+
+    public Empresa buscarPorId(int idEmpresa) throws SQLException {
+        Connection conexion = null;
+        PreparedStatement ps = null;
+        ResultSet resultado = null;
+        Empresa empresa = null;
+
+        try {
+            conexion = DAOUtil.obtenerConexion();
+            ps = conexion.prepareStatement(SELECT_BY_ID);
+            ps.setInt(1, idEmpresa);
+
+            resultado = ps.executeQuery();
+
+            if (resultado.next()) {
+                int id = resultado.getInt("idEmpresa");
+                String nombre = resultado.getString("nombre");
+                empresa = new Empresa(id, nombre);
+            }
+        } finally {
+            DAOUtil.cerrarRecursos(conexion, ps, resultado);
+        }
+
+        return empresa;
+    }
+
+   private final static String DELETE_EMPRESA = "DELETE FROM empresa WHERE idEmpresa = ?";
+
+    public boolean borrarEmpresa(int idEmpresa) throws SQLException {
+        Connection conexion = null;
+        PreparedStatement sentencia = null;
+
+        try {
+            conexion = DAOUtil.obtenerConexion();
+            // Deshabilitar la confirmación automática
+            conexion.setAutoCommit(false);
+
+            sentencia = conexion.prepareStatement(DELETE_EMPRESA);
+            sentencia.setInt(1, idEmpresa);
+
+            int numFilas = sentencia.executeUpdate();
+
+            if (numFilas == 1) {
+                // Confirmar la transacción si la eliminación fue exitosa
+                conexion.commit();
+                return true;
+            } else {
+                // Revertir la transacción si no se eliminó ninguna fila
+                conexion.rollback();
+                return false;
+            }
+        } finally {
+            // Cerrar la sentencia
+            if (sentencia != null) {
+                sentencia.close();
+            }
+
+            // Restaurar la confirmación automática y cerrar la conexión
+            if (conexion != null) {
+                conexion.setAutoCommit(true);
+                conexion.close();
+            }
+        }
+    }
+}
+}
